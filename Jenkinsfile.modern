@@ -22,7 +22,9 @@ pipeline {
     stage('Run maven') {
       steps {
         container('maven') {
-          sh 'mvn -Dmaven.test.failure.ignore=true install'
+          readCache name: 'maven'
+          sh 'mvn -Dmaven.test.failure.ignore=true -Dmaven.repo.local=./maven-repo clean install'
+          writeCache name: 'maven', includes: 'maven-repo/**'
         }
       }
     }
