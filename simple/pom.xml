@@ -29,6 +29,11 @@
       <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.not.real</groupId>
+      <artifactId>bogus-artifact</artifactId>
+      <version>17.99</version>
+    </dependency>
   </dependencies>
 
   <build>
