@@ -6,7 +6,17 @@ pipeline {
     stages {
         stage ('Build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+                script {
+                    try {
+                        sh 'mvn -Dmaven.test.failure.ignore=true install'
+                    }
+                    catch (error) {
+                        currentBuild.result = 'FAILURE'
+                        throw error
+                    }
+                    finally {
+                    }
+                }
             }
             post {
                 success {
